@@ -19,25 +19,26 @@ if [[ "${SRC_REPO}" -eq "" ]]; then
         SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
         echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
      fi
+     
 git clone "${SRC_REPO}"
-
-if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
-    echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
-    echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
-    echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
-    echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
-    echo " - uses: actions/checkout@v1" > /dev/stderr
-    if [[ "${SRC_REPO}" -eq "" ]]; then
-        echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
-        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
-        echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
-     fi
-    mkdir source_repo
-    cd source_repo
-    git init
-    git remote add origin "${SRC_REPO}"
-    git fetch --all
-fi
+ls -lrt
+#if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
+#    echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
+#    echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
+#    echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
+#    echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
+#    echo " - uses: actions/checkout@v1" > /dev/stderr
+#    if [[ "${SRC_REPO}" -eq "" ]]; then
+#        echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
+#        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
+#        echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
+#     fi
+#    mkdir source_repo
+#    cd source_repo
+#    git init
+#    git remote add origin "${SRC_REPO}"
+#    git fetch --all
+#fi
 
 git config --global credential.username "${GIT_USERNAME}"
 

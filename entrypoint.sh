@@ -29,10 +29,8 @@ if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     git init > /dev/null
     git remote add origin "${SRC_REPO}"
     git fetch --all > /dev/null 2>&1
-    pwd
-    ls -lrt
-    cd $(basename ${SRC_REPO} .git)
-    #git rm -r .github
+    ls -lrt > /dev/null 2>&1
+    git rm -r .github > /dev/null 2>&1
 fi
 
 git config --global credential.username "${GIT_USERNAME}"

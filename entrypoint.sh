@@ -26,8 +26,8 @@ if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
         SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
         echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
      fi
-    mkdir source
-    cd source
+    mkdir source_repo
+    cd source_repo
     git init
     git remote add origin "${SRC_REPO}"
     git fetch --all
@@ -65,7 +65,7 @@ fi
 
 git clone "${REMOTE}"
 cd $(basename "${REMOTE}" .git)
-cp /source/$(basename "${SRC_REPO}" .git) /github/workspace/$(basename "${REMOTE}" .git)
+cp /source_repo/$(basename "${SRC_REPO}" .git) /github/workspace/$(basename "${REMOTE}" .git)
 git rm -r .github
 git add *
 git commit -m

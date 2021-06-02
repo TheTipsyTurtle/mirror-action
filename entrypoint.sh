@@ -76,7 +76,7 @@ cp -r /github/workspace/$(basename "${SRC_REPO}" .git)/ /github/workspace/$(base
 ls -lrt
 #git rm -r .github
 git add *
-git commit -m
+git commit -m "cloned from ISV"
 git push
 
 #ls -lrt > /dev/null 2>&1

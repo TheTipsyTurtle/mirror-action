@@ -31,8 +31,8 @@ if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     git fetch --all > /dev/null 2>&1
     pwd
     ls -lrt
-    cd $(basename ${SRC_REPO})
-    git rm -r .github
+    cd $(basename ${SRC_REPO} .git)
+    #git rm -r .github
 fi
 
 git config --global credential.username "${GIT_USERNAME}"

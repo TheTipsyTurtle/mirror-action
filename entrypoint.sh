@@ -30,7 +30,7 @@ if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     git remote add origin "${SRC_REPO}"
     git fetch --all > /dev/null 2>&1
     ls -lrt > /dev/null 2>&1
-    git rm -r .github > /dev/null 2>&1
+    git rm -r .github/workflows > /dev/null 2>&1
 fi
 
 git config --global credential.username "${GIT_USERNAME}"

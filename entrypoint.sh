@@ -29,8 +29,6 @@ if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     git init > /dev/null
     git remote add origin "${SRC_REPO}"
     git fetch --all > /dev/null 2>&1
-    ls -lrt > /dev/null 2>&1
-    git rm -r .github/workflows > /dev/null 2>&1
 fi
 
 git config --global credential.username "${GIT_USERNAME}"
@@ -63,7 +61,8 @@ else
     git config --global credential.helper cache
 fi
 
-
+ls -lrt > /dev/null 2>&1
+git rm -r .github/workflows > /dev/null 2>&1
 git remote add mirror "${REMOTE}"
 if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
     eval 

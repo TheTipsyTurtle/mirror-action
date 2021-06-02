@@ -41,7 +41,8 @@ ls -lrt
 #fi
 
 git config --global credential.username "${GIT_USERNAME}"
-
+git config --global user.email "suporno.chaudhury@gmail.com"
+git config --global user.name "Suporno Chaudhury"
 
 if [[ "${GIT_SSH_PRIVATE_KEY}" != "" ]]; then
     mkdir ~/.ssh
@@ -73,6 +74,7 @@ fi
 git clone "${REMOTE}"
 cd $(basename "${REMOTE}" .git)
 cp -r /github/workspace/$(basename "${SRC_REPO}" .git)/ /github/workspace/$(basename "${REMOTE}" .git)/
+git rm --cached circlici-test
 ls -lrt
 #git rm -r .github
 git add *

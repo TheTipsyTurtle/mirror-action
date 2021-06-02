@@ -73,7 +73,7 @@ fi
 
 git clone "${REMOTE}"
 cd $(basename "${REMOTE}" .git)
-cp -r /github/workspace/$(basename "${SRC_REPO}" .git)/ /github/workspace/$(basename "${REMOTE}" .git)/
+rsync -av --exclude=".*" /github/workspace/$(basename "${SRC_REPO}" .git)/ /github/workspace/$(basename "${REMOTE}" .git)/
 #git rm --cached circlici-test
 ls -lrt
 #git rm -r .github

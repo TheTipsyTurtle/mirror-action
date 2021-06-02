@@ -14,6 +14,7 @@ GIT_SSH_NO_VERIFY_HOST=${INPUT_GIT_SSH_NO_VERIFY_HOST}
 GIT_SSH_KNOWN_HOSTS=${INPUT_GIT_SSH_KNOWN_HOSTS}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
+git clone "${SRC_REPO}"
 
 if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
     echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
@@ -65,7 +66,7 @@ fi
 
 git clone "${REMOTE}"
 cd $(basename "${REMOTE}" .git)
-cp /source_repo/ /github/workspace/$(basename "${REMOTE}" .git)/
+cp $(basename "${SRC_REPO}" .git)/ /github/workspace/$(basename "${REMOTE}" .git)/
 git rm -r .github
 git add *
 git commit -m

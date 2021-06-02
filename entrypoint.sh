@@ -64,6 +64,8 @@ fi
 
 git remote add mirror "${REMOTE}"
 if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
+    eval git pull
+    eval git rm -r .github
     eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
 else
     if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then

@@ -14,6 +14,11 @@ GIT_SSH_NO_VERIFY_HOST=${INPUT_GIT_SSH_NO_VERIFY_HOST}
 GIT_SSH_KNOWN_HOSTS=${INPUT_GIT_SSH_KNOWN_HOSTS}
 HAS_CHECKED_OUT="$(git rev-parse --is-inside-work-tree 2>/dev/null || /bin/true)"
 
+if [[ "${SRC_REPO}" -eq "" ]]; then
+        echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
+        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
+        echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
+     fi
 git clone "${SRC_REPO}"
 
 if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then

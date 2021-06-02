@@ -63,7 +63,7 @@ fi
 
 git clone "${REMOTE}"
 cd $(basename "${REMOTE}" .git)
-cp github/workspace/$(basename "${REMOTE}" .git) > /dev/null 2>&1
+cp /dev/null$(basename "${SRC_REPO}" .git) /dev/null$(basename "${SRC_REPO}" .git)
 git rm -r .github
 git add *
 git commit -m

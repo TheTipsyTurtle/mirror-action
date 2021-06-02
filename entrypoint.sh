@@ -61,17 +61,25 @@ else
     git config --global credential.helper cache
 fi
 
-ls -lrt > /dev/null 2>&1
-git rm -r .github/workflows > /dev/null 2>&1
-git remote add mirror "${REMOTE}"
-if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
-    eval 
-    eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
-else
-    if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
-        echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
-        exit 1
-    else
-        eval git push -u ${GIT_PUSH_ARGS} mirror
-    fi
-fi
+git clone "${REMOTE}"
+cd ($basename "${REMOTE}" .git)
+cp github/workspace/($basename "${REMOTE}" .git) > /dev/null 2>&1
+git rm -r .github
+git add *
+git commit -m
+git push
+
+#ls -lrt > /dev/null 2>&1
+#git rm -r .github/workflows > /dev/null 2>&1
+#git remote add mirror "${REMOTE}"
+#if [[ "${INPUT_PUSH_ALL_REFS}" != "false" ]]; then
+#    eval 
+#    eval git push ${GIT_PUSH_ARGS} mirror "\"refs/remotes/origin/*:refs/heads/*\""
+#else
+#    if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
+#        echo "FATAL: You must upgrade to using actions inputs instead of args: to push a single branch" > /dev/stderr
+#        exit 1
+#    else
+#        eval git push -u ${GIT_PUSH_ARGS} mirror
+#    fi
+#fi

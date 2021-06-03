@@ -39,8 +39,8 @@ jobs:
 
 ```
 
-# All lines in readme after this are from spyoungtech. He explains best.
-# A lot is WIP
+# Following lines: spyoungtech. He explains best.
+# A lot is WIP from my end
 # mirror-action
 A GitHub Action for mirroring your commits to a different remote repository
 

@@ -22,24 +22,6 @@ if [[ "${SRC_REPO}" -eq "" ]]; then
      
 git clone "${SRC_REPO}"
 ls -lrt
-#if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
-#    echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
-#    echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
-#    echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
-#    echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
-#    echo " - uses: actions/checkout@v1" > /dev/stderr
-#    if [[ "${SRC_REPO}" -eq "" ]]; then
-#        echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
-#        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
-#        echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
-#     fi
-#    mkdir source_repo
-#    cd source_repo
-#    git init
-#    git remote add origin "${SRC_REPO}"
-#    git fetch --all
-#fi
-
 git config --global credential.username "${GIT_USERNAME}"
 git config --global user.email "suporno.chaudhury@gmail.com"
 git config --global user.name "Suporno Chaudhury"
@@ -81,6 +63,24 @@ git add *
 git commit -m "cloned from ISV"
 git push
 
+
+#if [[ "${HAS_CHECKED_OUT}" != "true" ]]; then
+#    echo "WARNING: repo not checked out; attempting checkout" > /dev/stderr
+#    echo "WARNING: this may result in missing commits in the remote mirror" > /dev/stderr
+#    echo "WARNING: this behavior is deprecated and will be removed in a future release" > /dev/stderr
+#    echo "WARNING: to remove this warning add the following to your yml job steps:" > /dev/stderr
+#    echo " - uses: actions/checkout@v1" > /dev/stderr
+#    if [[ "${SRC_REPO}" -eq "" ]]; then
+#        echo "WARNING: SRC_REPO env variable not defined" > /dev/stderr
+#        SRC_REPO="https://github.com/${GITHUB_REPOSITORY}.git" > /dev/stderr
+#        echo "Assuming source repo is ${SRC_REPO}" > /dev/stderr
+#     fi
+#    mkdir source_repo
+#    cd source_repo
+#    git init
+#    git remote add origin "${SRC_REPO}"
+#    git fetch --all
+#fi
 #ls -lrt > /dev/null 2>&1
 #git rm -r .github/workflows > /dev/null 2>&1
 #git remote add mirror "${REMOTE}"

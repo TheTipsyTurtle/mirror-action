@@ -2,14 +2,14 @@
 ## Adaption from the solution by spyoungtech/mirror-action.
 
 ## Difference:
-Uses git commands to create a local copy of source repository on docker images.
-Clones the destination repository.
-Copies content from source to destination repository without hidden files (.git, actions, .github) (Prevents action from running on destination end)
-Pushes to the destination repository without overwrite.
-Prefers error than forced push.
+1. Uses git commands to create a local copy of source repository on docker images.  
+2. Clones the destination repository.  
+3. Copies content from source to destination repository without hidden files (.git, actions, .github) (Prevents action from running on destination end)  
+4. Pushes to the destination repository without overwrite.  
+5. Prefers error than forced push.
 
 ## Notes
-Working in a similar fashion to example action workflow in supes1100/circlicitest
+Working in a similar fashion to example action workflow in supes1100/circlicitest  
 Perfect for copying from third party repo and conducting CI/CD on your repo. (Without forking)
 
 ## Example:

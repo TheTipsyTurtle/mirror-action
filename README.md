@@ -1,3 +1,46 @@
+# WORK IN PROGRESS
+## Adaption from the solution by spyoungtech/mirror-action.
+
+## Difference:
+Uses git commands to create a local copy of source repository on docker images.
+Clones the destination repository.
+Copies content from source to destination repository without hidden files (.git, actions, .github) (Prevents action from running on destination end)
+Pushes to the destination repository without overwrite.
+Prefers error than forced push.
+
+## Notes
+Working in a similar fashion to example action workflow in supes1100/circlicitest
+Perfect for copying from third party repo and conducting CI/CD on your repo. (Without forking)
+
+## Example:
+
+```yaml
+
+name: Mirror
+on: [ push, delete, create ]
+
+
+# Ensures that only one mirror task will run at a time.
+concurrency:
+  group: git-mirror
+jobs:
+  git-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git-mirror-2
+        uses: TheTipsyTurtle/mirror-action@master
+        env:
+          PUSH_ALL_REFS: "false"
+        with:
+          REMOTE: git@github.com:TheTipsyTurtle/circleci5.git
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"
+          GIT_PUSH_ARGS: --prune
+
+```
+
+# All lines in readme after this are from spyoungtech. He explains best.
+# A lot is WIP
 # mirror-action
 A GitHub Action for mirroring your commits to a different remote repository
 
